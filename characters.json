@@ -1,0 +1,173 @@
+{
+   "characters" : [
+        {
+            "id": 13,
+            "location": "Berlin",
+            "pl": "Litwa",
+            "en": "Lithuania",
+            "occupation": "nauczyciel",
+            "coordinates": [
+                52.520008,
+                13.404954
+            ],
+            "day": "piątek",
+            "order": 13
+        },
+        {
+            "id": 1,
+            "location": "Tuluza",
+            "pl": "Węgry",
+            "en": "Hungary",
+            "occupation": "tłumaczka",
+            "coordinates": [
+                43.6042600,
+                1.4436700
+            ],
+            "day": "poniedziałek",
+            "order": 1
+        },
+        {
+            "id": 2,
+            "location": "Itteville",
+            "pl": "Białoruś",
+            "en": "Belarus",
+            "occupation": "pracownik fizyczny",
+            "coordinates": [
+                48.514297, 
+                2.339731
+            ],
+            "day": "poniedziałek",
+            "order": 2
+        },
+        {
+            "id": 3,
+            "location": "Fryburg",
+            "pl": "Ukraina",
+            "en": "Ukraine",
+            "occupation": "",
+            "coordinates": [
+                47.997791,
+                7.842609
+            ],
+            "day": "poniedziałek",
+            "order": 3
+        },
+        {
+            "id": 8,
+            "location": "Danzig",
+            "pl": "Belgia",
+            "en": "Belgium",
+            "occupation": "",
+            "coordinates": [
+                54.35,
+                18.667
+            ],
+            "day": "środa",
+            "order": 8
+        },
+        {
+            "id": 10,
+            "location": "Lemburg",
+            "pl": "Holandia",
+            "en": "Netherlands",
+            "occupation": "",
+            "coordinates": [
+                49.8382600,
+                24.0232400
+            ],
+            "day": "czwartek",
+            "order": 10
+        },
+        {
+            "id": 5,
+            "location": "Treviso",
+            "pl": "Francja",
+            "en": "France",
+            "occupation": "",
+            "coordinates": [
+                45.6667300,
+                12.2416000      
+            ],
+            "day": "wtorek",
+            "order": 5
+        },
+        {
+            "id": 11,
+            "location": "Krzywy Róg",
+            "pl": "Estonia",
+            "en": "Estonia",
+            "occupation": "",
+            "coordinates": [
+                47.9096600,
+                33.3804400   
+            ],
+            "day": "czwartek",
+            "order": 11
+        },
+        {
+            "id": 12,
+            "location": "Słuck",
+            "pl": "Łotwa",
+            "en": "Latvia",
+            "occupation": "",
+            "coordinates": [
+                53.0274000,
+                27.5597000
+            ],
+            "day": "piątek",
+            "order": 12
+        },
+        {
+            "id": 7,
+            "location": "Pardubice",
+            "pl": "Rumunia",
+            "en": "Romania",
+            "occupation": "",
+            "coordinates": [
+                50.0407500,
+                15.7765900 
+            ],
+            "day": "wtorek",
+            "order": 7
+        },
+        {
+            "id": 9,
+            "location": "Madona",
+            "pl": "Dania",
+            "en": "Denmark",
+            "occupation": "",
+            "coordinates": [
+                56.85,
+                26.216667 
+            ],
+            "day": "czwartek",
+            "order": 9
+        },
+        {
+            "id": 4,
+            "location": "Bielefeld",
+            "pl": "Czechy",
+            "en": "Czechia",
+            "occupation": "",
+            "coordinates": [
+                52.0333300,
+                8.5333300
+            ],
+            "day": "wtorek",
+            "order": 4
+        },
+        {
+            "id": 6,
+            "location": "Wels",
+            "pl": "Słowacja",
+            "en": "Slovakia",
+            "occupation": "",
+            "coordinates": [
+                48.1666700,
+                14.0333300
+            ],
+            "day": "wtorek",
+            "order": 6
+        }
+    ]
+}

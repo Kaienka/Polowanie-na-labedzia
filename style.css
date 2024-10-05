@@ -1,0 +1,25 @@
+html, body {
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    height: 95%;
+    width: 100%;
+    position: relative;
+}
+
+#header {
+    height: 5%;
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+    background-color: #98c0d9;
+    color: rgb(2, 13, 62);
+    border: none;
+    cursor: pointer;
+}
+

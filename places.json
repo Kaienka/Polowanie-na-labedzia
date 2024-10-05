@@ -1,0 +1,84 @@
+{
+    "places": [
+        {
+            "id": 0,
+            "type": "home",
+            "name": "Mieszkanie Ludwiga i Gilberta",
+            "coordinates": [52.49658237319377,13.411961651621063],
+            "city": "Berlin",
+            "desc": "Wspólne mieszkanie braci. Ludwig częściej sypia w biurze, a Gilbert bywa tu jedynie w sobotnie i niedzielne noce, odsypiając huczne imprezy - wspólne życie wydaje się być już tylko wspomnieniem. Podobnie jak ich więź. "
+        },
+        {
+            "id": 1,
+            "type": "office",
+            "name": "Biuro relokacji",
+            "coordinates": [52.515757711599676,13.391419789702997],
+            "city": "Berlin",
+            "desc": "Miejsce pracy Lefevre'a, Gilberta, dyrektora i sekretarki, gdzie podejmowane są decyzje dotyczące zamieszkania personifikacji oraz układany jest plan wizytacji."
+        },
+        {
+            "id": 2,
+            "type": "home",
+            "name": "Dom Gilberta",
+            "coordinates": [54.34783959149646,18.702759143398843],
+            "city": "Gdańsk",
+            "desc": "Dom niedaleko rafinerii, wynajmowany przez Gilberta jako forma dodatkowego dochodu."
+        },
+        {
+            "id": 3,
+            "type": "home",
+            "name": "Dom Jesienny",
+            "coordinates": [52.37275315236884,13.80149427331856],
+            "city": "obok Berlina",
+            "desc": "Planowana inicjatywa fuhrera."
+        },
+        {
+            "id": 4,
+            "type": "home",
+            "name": "Dziupla Grisa",
+            "coordinates": [43.0940904,-0.0464975],
+            "city": "Lourdes",
+            "desc": "Miejsce przesiąknięte zapachem papierosów, dziupla przemytników na niemiecko-hiszpańskiej granicy."
+        },
+        {
+            "id": 5,
+            "type": "important",
+            "name": "Iglica Żalu",
+            "coordinates": [52.24898908051277,21.01369488388924],
+            "city": "Warszawa",
+            "desc":"Wzniesiona jako akt rzekomego żalu za zniszczenie Warszawy; wysoka iglica widoczna z wielu kilometrów wznosi się ponad morzem gruzów."
+        },
+        {
+            "id": 6,
+            "type": "important",
+            "name": "Charlottenburg",
+            "coordinates": [52.5050484,13.3045162],
+            "city": "Berlin",
+            "desc" :"Berliński pałac, miejsce spotkań personifikacji podczas obchodów Dnia Zjednoczenia."
+        },
+        {
+            "id": 7,
+            "type": "important",
+            "name": "Grosser Platz i biuro fuhrera oraz Ludwiga",
+            "coordinates": [52.51855970921973,13.373052429931715],
+            "city": "Berlin",
+            "desc":"Monumentalny plac, symbol światłości Imperium, wraz z biurem fuhrera. Ludwig też tu pracuje."
+        },
+        {
+            "id": 8,
+            "type": "important",
+            "name": "Wilno",
+            "coordinates": [54.6870458,25.2829111],
+            "city": "Wilno",
+            "desc": "Ruiny zniszczonego miasta, zbombardowanego po buncie litewskich oddziałów podczas wojny. Nigdy nie odbudowane, z wolna zarasta lasem."
+        },
+        {
+            "id": 9,
+            "type": "important",
+            "name": "Kursk",
+            "coordinates": [51.71666670, 36.18333330],
+            "city": "Kursk",
+            "desc": "Niewielkie, przygraniczne miasto przemysłowe. W 2015 roku wydarzył się tu atak terrorystyczny. Śledztwo ciągle w toku."
+        }
+    ]
+}
