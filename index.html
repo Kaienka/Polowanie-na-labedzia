@@ -10,14 +10,17 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="./plugins/leaflet.curve.js"></script>
     <script src="https://kit.fontawesome.com/09d82ae535.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="leaflet.awesome-markers.css">
-    <script src="leaflet.awesome-markers.js"></script>
+    <script src="./plugins/leaflet.awesome-markers.js"></script>
 </head>
 <body>
     <div id="header">
+        <button class="hamburger" onclick="toggleMenu()">
+            &#9776;
+        </button>
         <button onclick="backToDefaultView()"><i class="fa fa-map"></i> Domyślny widok</button>
         <button onclick="switchCharsLocations()"><i class="fa fa-home"></i> Lokalizacje postaci</button>
         <button onclick="switchGilbertsPath()"><i class="fa fa-plane"></i> Trasa Gilberta</button>

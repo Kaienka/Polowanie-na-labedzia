@@ -1,23 +1,18 @@
-
-// map creation
 const defaultCoordinates = [54.526, 15.2551]
 const defaultZoom = 5
 
-var map = L.map("map").setView(defaultCoordinates, defaultZoom);
+var map = L.map("map").setView(defaultCoordinates, defaultZoom)
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map)
 
-
 let characters = {}
 let markers = []
 let markersVisible = true
 
-//let geoMap = []
-
-let places = {} // todo
+let places = {}
 let otherPlacesVisible = false
 let placeMarkers = []
 
@@ -25,27 +20,17 @@ let gilbPath = {}
 let curvePath = []
 let gilbPathVisible = true
 
-
-
-var chMarkerIcon = L.AwesomeMarkers.icon({
-    icon: 'home',
-    markerColor: 'red',
-    prefix: 'fa'
+var charIcon = L.AwesomeMarkers.icon({
+    icon: "home",
+    markerColor: "red",
+    prefix: "fa",
 })
 
 var placesIcon = L.AwesomeMarkers.icon({
-    icon: 'star',
-    markerColor: 'orange',
-    prefix: 'fa'
+    icon: "star",
+    markerColor: "orange",
+    prefix: "fa",
 })
-
-// var markersOptions = {
-//     riseOnHover: true,
-//     riseOffset: 500,
-//     icon: chMarkerIcon
-// }
-
-
 
 var pathOptions = {
     color: "#2856a1",
@@ -54,7 +39,22 @@ var pathOptions = {
     opacity: 0.7,
 }
 
-fetch("characters.json")
+const style = (feature) => {
+    return { color: feature.properties.fill }
+}
+
+const showInfo = (feature, layer) => {
+    if (feature.properties && feature.properties.name) {
+        layer.bindPopup(
+            "<strong>" +
+            feature.properties.name +
+            "</strong><br>" +
+            feature.properties.desc
+        )
+    }
+}
+
+fetch("data/characters.json")
     .then((response) => {
         if (!response.ok) {
             throw new Error("Network response was not ok")
@@ -77,24 +77,7 @@ fetch("characters.json")
         console.error("There was a problem with the fetch operation:", error)
     })
 
-
-const style = (feature) => {
-        return {color: feature.properties.fill}
-}
-
-const showInfo = ((feature, layer) => {
-    if (feature.properties && feature.properties.name) {
-        layer.bindPopup('<strong>' + feature.properties.name + '</strong><br>' + feature.properties.desc)
-    }
-})
-
-var mapStyle = {
-    // color: "red",
-    // weight: 3,
-    // opacity: 0.45,
-}
-
-fetch("gotowe.geojson")
+fetch("data/map.geojson")
     .then((response) => {
         if (!response.ok) {
             throw new Error("Network response was not ok")
@@ -102,14 +85,13 @@ fetch("gotowe.geojson")
         return response.json()
     })
     .then((data) => {
-        L.geoJSON(data, { 
+        L.geoJSON(data, {
             style: style,
-            onEachFeature: showInfo
-         }).addTo(map)
+            onEachFeature: showInfo,
+        }).addTo(map)
     })
 
-
-fetch("places.json")
+fetch("data/places.json")
     .then((response) => {
         if (!response.ok) {
             throw new Error("Network response was not ok")
@@ -125,7 +107,6 @@ fetch("places.json")
     .catch((error) => {
         console.error("There was a problem with the fetch operation:", error)
     })
-
 
 const createMarkerDesc = (character) => {
     return `<h3><b>${character.pl}</b></h3><strong>Mieszka w: </strong>${character.location}<br>
@@ -151,7 +132,7 @@ window.switchGilbertsPath = () => {
 
 window.switchOtherPlaces = () => {
     placeMarkers.forEach((marker) => {
-        otherPlacesVisible? map.removeLayer(marker) : marker.addTo(map)
+        otherPlacesVisible ? map.removeLayer(marker) : marker.addTo(map)
     })
     otherPlacesVisible = !otherPlacesVisible
 }
@@ -161,27 +142,29 @@ const createMarker = (character) => {
         title: character.pl,
         riseOnHover: true,
         riseOffset: 500,
-        icon: chMarkerIcon
+        icon: charIcon,
     }).addTo(map)
 
     marker.bindPopup(createMarkerDesc(character))
     markers.push(marker)
 }
 
-
-
 const createPlaceMarker = (place) => {
     const marker = L.marker(place.coordinates, {
-        title: place.name, 
+        title: place.name,
         icon: placesIcon,
         riseOnHover: true,
         riseOffset: 500,
-    }
-    )
+    })
     marker.bindPopup(createPlaceDesc(place))
     placeMarkers.push(marker)
 }
 
 window.backToDefaultView = function () {
     map.setView(defaultCoordinates, defaultZoom)
+}
+
+window.toggleMenu = function() {
+    const header = document.getElementById('header')
+    header.classList.toggle('menu-visible')
 }
