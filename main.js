@@ -1,12 +1,27 @@
 const defaultCoordinates = [54.526, 15.2551]
 const defaultZoom = 5
 
-var map = L.map("map").setView(defaultCoordinates, defaultZoom)
+const map = L.map("map").setView(defaultCoordinates, defaultZoom)
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map)
+
+
+L.controlCredits({
+    imageurl: './icon.png',
+    imagealt: 'icon for links',
+    tooltip: 'Made by KaiShouri',
+    width: '30px',
+    height: '30px',
+    position: 'bottomright',
+    expandcontent: `<strong>Polowanie na łabędzia</strong><br>
+    <a href="https://www.wattpad.com/story/197754386-aph-polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Wattpad</a>
+    <a href="https://archiveofourown.org/works/20355778/chapters/48268933" target="_blank">AO3</a>
+    <a href="https://www.fanfiction.net/s/13370205/1/Polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Fanfiction.net</a>`
+}).addTo(map)
+
 
 let characters = {}
 let markers = []
@@ -20,19 +35,19 @@ let gilbPath = {}
 let curvePath = []
 let gilbPathVisible = true
 
-var charIcon = L.AwesomeMarkers.icon({
+const charIcon = L.AwesomeMarkers.icon({
     icon: "home",
     markerColor: "red",
     prefix: "fa",
 })
 
-var placesIcon = L.AwesomeMarkers.icon({
+const placesIcon = L.AwesomeMarkers.icon({
     icon: "star",
     markerColor: "orange",
     prefix: "fa",
 })
 
-var pathOptions = {
+const pathOptions = {
     color: "#2856a1",
     fill: false,
     weight: 3,
@@ -44,13 +59,21 @@ const style = (feature) => {
 }
 
 const showInfo = (feature, layer) => {
-    if (feature.properties && feature.properties.name) {
-        layer.bindPopup(
-            "<strong>" +
-            feature.properties.name +
-            "</strong><br>" +
-            feature.properties.desc
-        )
+    if (feature.properties) {
+    var textColor = feature.properties.fill
+    L.marker({ lat: feature.properties.label_point[1],
+        lng: feature.properties.label_point[0] }, {
+        icon: L.divIcon({
+            className: 'polygon-label',
+            html: `<span style="color: ${textColor};">${feature.properties.name}</span>`,
+            iconSize: [100, 40]
+        })
+    }).bindPopup(
+        "<strong>" +
+        feature.properties.name +
+        "</strong><br>" +
+        feature.properties.desc)
+    .addTo(map)
     }
 }
 
@@ -122,11 +145,13 @@ window.switchCharsLocations = () => {
     markers.forEach((marker) => {
         markersVisible ? map.removeLayer(marker) : marker.addTo(map)
     })
+    document.getElementById('houses').style.color = !markersVisible? 'gold' : 'black'
     markersVisible = !markersVisible
 }
 
 window.switchGilbertsPath = () => {
     gilbPathVisible ? map.removeLayer(gilbPath) : gilbPath.addTo(map)
+    document.getElementById('route').style.color = !gilbPathVisible? 'gold' : 'black'
     gilbPathVisible = !gilbPathVisible
 }
 
@@ -134,6 +159,7 @@ window.switchOtherPlaces = () => {
     placeMarkers.forEach((marker) => {
         otherPlacesVisible ? map.removeLayer(marker) : marker.addTo(map)
     })
+    document.getElementById('places').style.color = !otherPlacesVisible ? 'gold' : 'black'
     otherPlacesVisible = !otherPlacesVisible
 }
 

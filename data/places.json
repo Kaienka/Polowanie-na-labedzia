@@ -30,7 +30,7 @@
             "name": "Dom Jesienny",
             "coordinates": [52.37275315236884,13.80149427331856],
             "city": "obok Berlina",
-            "desc": "Planowana inicjatywa fuhrera."
+            "desc": "Planowana inicjatywa führera."
         },
         {
             "id": 4,
@@ -79,6 +79,14 @@
             "coordinates": [51.71666670, 36.18333330],
             "city": "Kursk",
             "desc": "Niewielkie, przygraniczne miasto przemysłowe. W 2015 roku wydarzył się tu atak terrorystyczny. Śledztwo ciągle w toku."
+        },
+        {
+            "id" : 10,
+            "type": "important",
+            "name": "Neukaunas",
+            "coordinates": [54.89821, 23.90448],
+            "city": "Kowno",
+            "desc": "Odbudowane po wojnie Nowe Kowno, w którym Taurys napotkał pewnego Schwäne..."
         }
     ]
 }

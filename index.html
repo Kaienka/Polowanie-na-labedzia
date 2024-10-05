@@ -15,6 +15,10 @@
     <script src="https://kit.fontawesome.com/09d82ae535.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="leaflet.awesome-markers.css">
     <script src="./plugins/leaflet.awesome-markers.js"></script>
+    <script type="text/javascript" src="plugins/leaflet-control-credits.js"></script>
+    <link rel="stylesheet" href="css/leaflet-control-credits.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link href="https://fonts.googleapis.com/css2?family=Germania+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="header">
@@ -22,9 +26,9 @@
             &#9776;
         </button>
         <button onclick="backToDefaultView()"><i class="fa fa-map"></i> Domyślny widok</button>
-        <button onclick="switchCharsLocations()"><i class="fa fa-home"></i> Lokalizacje postaci</button>
-        <button onclick="switchGilbertsPath()"><i class="fa fa-plane"></i> Trasa Gilberta</button>
-        <button onclick="switchOtherPlaces()"><i class="fa fa-star"></i> Inne miejsca</button>
+        <button onclick="switchCharsLocations()"><i class="fa fa-home" style="color: gold;" id="houses"></i> Lokalizacje postaci</button>
+        <button onclick="switchGilbertsPath()"><i class="fa fa-plane" style="color: gold;" id="route"></i> Trasa Gilberta</button>
+        <button onclick="switchOtherPlaces()"><i class="fa fa-star" id="places"></i> Inne miejsca</button>
     </div>
     <div id="map">
     </div>
