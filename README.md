@@ -14,3 +14,7 @@ Hello! This here is a small hobby project related to my fanfiction ["Polowanie n
 
 [Leaflet curve](https://github.com/elfalem/Leaflet.curve)
 
+[L.credits](https://github.com/GreenInfo-Network/Leaflet-Control-Credits)
+
+Credit icon created with [Canva](https://canva.com/)
+
