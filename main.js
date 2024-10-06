@@ -1,39 +1,17 @@
 const defaultCoordinates = [54.526, 15.2551]
 const defaultZoom = 5
 
-const map = L.map("map").setView(defaultCoordinates, defaultZoom)
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution:
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-}).addTo(map)
-
-
-L.controlCredits({
-    imageurl: './icon.png',
-    imagealt: 'icon for links',
-    tooltip: 'Made by KaiShouri',
-    width: '30px',
-    height: '30px',
-    position: 'bottomright',
-    expandcontent: `<strong>Polowanie na łabędzia</strong><br>
-    <a href="https://www.wattpad.com/story/197754386-aph-polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Wattpad</a>
-    <a href="https://archiveofourown.org/works/20355778/chapters/48268933" target="_blank">AO3</a>
-    <a href="https://www.fanfiction.net/s/13370205/1/Polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Fanfiction.net</a>`
-}).addTo(map)
-
-
 let characters = {}
 let markers = []
 let markersVisible = true
-
 let places = {}
 let otherPlacesVisible = false
 let placeMarkers = []
-
 let gilbPath = {}
 let curvePath = []
 let gilbPathVisible = true
+
+
 
 const charIcon = L.AwesomeMarkers.icon({
     icon: "home",
@@ -54,11 +32,33 @@ const pathOptions = {
     opacity: 0.7,
 }
 
+// Map creation
+
+const map = L.map("map").setView(defaultCoordinates, defaultZoom)
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map)
+
+L.controlCredits({
+    imageurl: './icon.png',
+    imagealt: 'icon for links',
+    tooltip: 'Made by KaiShouri',
+    width: '30px',
+    height: '30px',
+    position: 'bottomright',
+    expandcontent: `<strong>Polowanie na łabędzia</strong><br>
+    <a href="https://www.wattpad.com/story/197754386-aph-polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Wattpad</a>
+    <a href="https://archiveofourown.org/works/20355778/chapters/48268933" target="_blank">AO3</a>
+    <a href="https://www.fanfiction.net/s/13370205/1/Polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Fanfiction.net</a>`
+}).addTo(map)
+
 const style = (feature) => {
     return { color: feature.properties.fill }
 }
 
-const showInfo = (feature, layer) => {
+const showInfo = (feature) => {
     if (feature.properties) {
     var textColor = feature.properties.fill
     L.marker({ lat: feature.properties.label_point[1],
@@ -77,6 +77,7 @@ const showInfo = (feature, layer) => {
     }
 }
 
+// Data loading
 fetch("data/characters.json")
     .then((response) => {
         if (!response.ok) {
@@ -130,6 +131,8 @@ fetch("data/places.json")
     .catch((error) => {
         console.error("There was a problem with the fetch operation:", error)
     })
+
+
 
 const createMarkerDesc = (character) => {
     return `<h3><b>${character.pl}</b></h3><strong>Mieszka w: </strong>${character.location}<br>
