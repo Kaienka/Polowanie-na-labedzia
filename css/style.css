@@ -118,7 +118,6 @@ html, body {
 
 .polygon-label {
    font-weight: 500;
-   font-size: 0.8rem;
    text-wrap: nowrap;
    text-transform: uppercase;
    font-family: 'Germania One';
@@ -126,4 +125,49 @@ html, body {
    letter-spacing: 3px;
    -webkit-text-stroke: 0.1px black;
    filter: brightness(80%);
+}
+
+
+
+.sidebar-tab-link {
+    transform: rotate(-90deg);
+    transition: none !important;
+    color: black !important;
+}
+
+.sidebar-tab-link.active {
+    color: gold !important;
+}
+
+.sidepanel-tab {
+    margin-top: 45px;
+    font-family: 'Lato' !important;
+}
+
+.sidepanel {
+    font-family: 'Lato' !important;
+    font-size:large;
+    z-index: 800 !important;
+}
+
+.sidepanel a {
+    text-decoration: none;
+}
+
+.active, .sidebar-tab-link:hover {
+    border: none !important;
+}
+
+.sidepanel-inner-wrapper {
+    background-color: #98c0d9 !important;
+}
+
+.sidepanel-tabs-wrapper {
+    background-color: #345a81 !important;
+}
+
+.sidepanel-toggle-button {
+    background-color: gold !important;
+    border-right: none;
+
 }

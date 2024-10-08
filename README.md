@@ -16,5 +16,11 @@ Hello! This here is a small hobby project related to my fanfiction ["Polowanie n
 
 [L.credits](https://github.com/GreenInfo-Network/Leaflet-Control-Credits)
 
+[Turf](https://turfjs.org/)
+
+[Leaflet Sidepanel](https://github.com/maxwell-ilai/Leaflet.SidePanel)
+
+[Showdown](https://github.com/showdownjs/showdown)
+
 Credit icon created with [Canva](https://canva.com/)
 

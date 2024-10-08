@@ -25,4 +25,17 @@ function addCredits(map) {
     }).addTo(map)
 }
 
-export { createdMap, addCredits }
+function addPanel(map) {
+    const panelRight = L.control
+    .sidepanel('panelID', {
+      panelPosition: 'right',
+      hasTabs: true,
+      tabsPosition: 'left',
+      pushControls: true,
+      darkMode: false,
+      defaultTab: 'tab-1',
+    })
+    .addTo(map);
+}
+
+export { createdMap, addCredits, addPanel, defaultCoordinates, defaultZoom }

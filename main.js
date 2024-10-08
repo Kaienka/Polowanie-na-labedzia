@@ -7,8 +7,9 @@ let placeMarkers = []
 let gilbPath = {}
 let curvePath = []
 let gilbPathVisible = true
+let geoJson = {}
 
-import { createdMap, addCredits } from "./map-creation.js"
+import { createdMap, addCredits, addPanel, defaultCoordinates, defaultZoom } from "./map-creation.js"
 import { pathOptions } from "./icons.js"
 import { createPlaceMarker, createMarker, createCountryInfo } from "./markers.js"
 
@@ -16,13 +17,23 @@ import { createPlaceMarker, createMarker, createCountryInfo } from "./markers.js
 const map = createdMap
 addCredits(map)
 
+
+
+map.on('zoomend', () => {
+    geoJson.eachLayer(layer => {
+        if (layer.feature) {
+            showInfo(layer.feature)
+        }
+    });
+});
+
 const style = (feature) => {
     return { color: feature.properties.fill }
 }
 
 const showInfo = (feature) => {
     if (feature.properties) {
-        createCountryInfo(feature.properties, map)
+        createCountryInfo(feature, map)
     }
 }
 
@@ -90,10 +101,11 @@ fetch("data/map.geojson")
         return response.json()
     })
     .then((data) => {
-        L.geoJSON(data, {
+        geoJson = L.geoJSON(data, {
             style: style,
             onEachFeature: showInfo,
         }).addTo(map)
+        addPanel(map)
     })
 
 fetch("data/places.json")
@@ -111,4 +123,24 @@ fetch("data/places.json")
     })
     .catch((error) => {
         console.error("There was a problem with the fetch operation:", error)
+    })
+
+const conventer = new showdown.Converter()
+
+fetch('data/berlin.md')
+    .then(response => response.text())
+    .then((result) =>  {
+        document.getElementById('berlin').innerHTML = conventer.makeHtml(result)
+    })
+
+fetch('data/prussia.md')
+    .then(response => response.text())
+    .then((result) =>  {
+        document.getElementById('prussia').innerHTML = conventer.makeHtml(result)
+    })
+
+fetch('data/empire.md')
+    .then(response => response.text())
+    .then((result) =>  {
+        document.getElementById('empire').innerHTML = conventer.makeHtml(result)
     })
