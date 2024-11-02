@@ -144,3 +144,9 @@ fetch('data/empire.md')
     .then((result) =>  {
         document.getElementById('empire').innerHTML = conventer.makeHtml(result)
     })
+
+fetch('data/wenedig.md')
+    .then(response => response.text())
+    .then((result) =>  {
+        document.getElementById('wenedig').innerHTML = conventer.makeHtml(result)
+    })
