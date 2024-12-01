@@ -17,6 +17,8 @@
     <script src="./plugins/leaflet.awesome-markers.js"></script>
     <script type="text/javascript" src="plugins/leaflet-control-credits.js"></script>
     <link rel="stylesheet" href="css/leaflet-control-credits.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link href="https://fonts.googleapis.com/css2?family=Germania+One&display=swap" rel="stylesheet">
     <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/leaflet.sidepanel@1.2.0/dist/style.css"/>
@@ -38,8 +40,8 @@
     <div id="panelID" class="sidepanel" aria-label="side panel" aria-hidden="false">
         <div class="sidepanel-inner-wrapper">
           <nav class="sidepanel-tabs-wrapper" aria-label="sidepanel tab navigation">
-            <ul class="sidepanel-tabs">
-              <li class="sidepanel-tab">
+            <ul class="sidepanel-tabs" role="tablist">
+              <li class="sidepanel-tab" role="presentation">
                 <a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-1">
                   Berlin
                 </a>

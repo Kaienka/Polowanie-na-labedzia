@@ -30,7 +30,7 @@ html, body {
     align-items: center;
     background-color: #345a81;
     padding: 10px;
-    z-index: 1000;
+    z-index: 4000;
 }
 
 #header button {
@@ -147,8 +147,21 @@ html, body {
 .sidepanel {
     font-family: 'Lato' !important;
     font-size:large;
-    z-index: 800 !important;
+    width: 300px;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 800;
+    visibility: hidden;
+    pointer-events: none;
 }
+
+.sidepanel-visible {
+    visibility: visible;
+    pointer-events: auto;
+}
+
 
 .sidepanel a {
     text-decoration: none;

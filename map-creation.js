@@ -36,6 +36,7 @@ function addPanel(map) {
       defaultTab: 'tab-1',
     })
     .addTo(map);
+    document.getElementById('panelID').classList.add('sidepanel-visible');
 }
 
 export { createdMap, addCredits, addPanel, defaultCoordinates, defaultZoom }
