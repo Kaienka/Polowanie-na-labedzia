@@ -150,7 +150,9 @@ a:active {
 .sidebar-tab-link {
   transform: rotate(-90deg);
   transition: none !important;
-  color: black !important;
+  color: #98c0d9 !important;
+  font-weight: 600 !important;
+  font-family: 'Lato' !important;
 }
 
 .sidebar-tab-link.active {
@@ -248,4 +250,7 @@ input:checked {
 
 .label-text {
   font-size: 0.5rem;
+  color: #98c0d9;
+  font-weight: 600;
+  text-transform: uppercase;
 }
