@@ -31,10 +31,33 @@
         <button class="hamburger" onclick="toggleMenu()">
             &#9776;
         </button>
-        <button onclick="backToDefaultView()"><i class="fa fa-map"></i> Domyślny widok</button>
-        <button onclick="switchCharsLocations()"><i class="fa fa-home" style="color: gold;" id="houses"></i> Lokalizacje postaci</button>
-        <button onclick="switchGilbertsPath()"><i class="fa fa-plane" style="color: gold;" id="route"></i> Trasa Gilberta</button>
-        <button onclick="switchOtherPlaces()"><i class="fa fa-star" id="places"></i> Inne miejsca</button>
+        <label>
+          <div class="wraper">
+            <button class="round-button" onclick="backToDefaultView()"><i class="fa fa-map"></i></button>
+          <span class="label-text">Resetuj mapę</span>
+          </div>
+        </label>
+        <label class="wraper" for="houses">
+          <div class="switch-wrap">
+            <input type="checkbox" id="houses" onchange="switchCharsLocations()"checked/>
+            <div class="switch"></div>
+          </div>
+          <span class="label-text">Lokalizacje postaci</span>
+        </label>
+        <label class="wraper" for="route">
+          <div class="switch-wrap">
+            <input type="checkbox" id="route" onchange="switchGilbertsPath()" checked/>
+            <div class="switch"></div>
+          </div>
+          <span class="label-text">Trasa Gilberta</span>
+        </label>
+        <label class="wraper" for="places">
+          <div class="switch-wrap">
+            <input type="checkbox" id="places" onchange="switchOtherPlaces()"/>
+            <div class="switch"></div>
+          </div>
+          <span class="label-text">Inne miejsca</span>
+        </label>
     </div>
     <div id="map">
     <div id="panelID" class="sidepanel" aria-label="side panel" aria-hidden="false">
