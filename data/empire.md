@@ -12,7 +12,7 @@ Obecnie, w dwa tysiące dziewiętnastym roku Zjednoczona Rzesza Niemiecka osiąg
 
 **stolica:** Berlin
 
-**rząd**: parlament i führer
+**rząd**: jednoizbowy parlament i führer
 
 **populacja**: 500 milionów
 
