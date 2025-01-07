@@ -1,7 +1,7 @@
 
 # Berlin
 
-Stolica i jedno z największych miast Zjednoczonej Rzeszy Niemieckiej. Założony w XIII wieku, od setek lat stanowi siedzibę władz - najpierw brandenburskich elektorów, później pruskich królów i niemieckich cesarzy, a w końcu następujących po sobie führerów. 
+Stolica i jedno z największych miast Zjednoczonej Rzeszy Niemieckiej. Założony w XIII wieku, od setek lat stanowi siedzibę władz - najpierw brandenburskich elektorów, później pruskich królów i niemieckich cesarzy, a w końcu następujących po sobie führerów.
 
 Gdy Trzecia Rzesza toczyła Wielką Wojnę Dziesięcioletnią, rozszerzając się na wschód, zachód, północ i południe, Berlin w tym czasie kwitł. Zabudowa miasta niemal nie ucierpiała w czasie wojennej zawieruchy, a monumentalne budynki wzniesione w ramach Planu Germania dodatkowo je uświetniły. Współcześnie Berlin prezentuje się jako piękne, wielkie, czyste miasto - dokładnie tak, jak powinna wyglądać stolica zwycięskiego imperium. Wedle führera, oczywiście.
 
