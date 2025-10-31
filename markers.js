@@ -3,13 +3,17 @@ import { placesIcon, charIcon } from "./icons.js"
 let labels = []
 
 const createMarkerDesc = (character) => {
-    return `<h3><b>${character.pl}</b></h3><strong>Mieszka w: </strong>${character.location}<br>
-            <strong>Zawód: </strong>${character.occupation}<br>
-            <strong>Wizytacja: </strong>${character.day} jako ${character.order} w kolejce`
+    return `<div class='font-mono'>
+            <h3 class='font-normal'><b>${character.pl}</b></h3>
+            <span><strong>Mieszka w: </strong>${character.location}</span><br>
+            <span><strong>Zawód: </strong>${character.occupation}</span><br>
+            <span><strong>Wizytacja: </strong>${character.day} jako ${character.order} w kolejce</span></div>`
 }
 
 const createPlaceDesc = (place) => {
-    return `<h3>${place.name}</h3>${place.desc}<br>`
+    return `<div class='font-mono'>
+    <h3><strong>${place.name}</strong></h3>${place.desc}<br>
+    </div>`
 }
 
 const createPlaceMarker = (place, placeMarkers) => {

@@ -1,117 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polowanie na łabędzia</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="./plugins/leaflet.curve.js"></script>
-    <script src="https://kit.fontawesome.com/09d82ae535.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/leaflet.awesome-markers.css">
-    <script src="./plugins/leaflet.awesome-markers.js"></script>
-    <script type="text/javascript" src="plugins/leaflet-control-credits.js"></script>
-    <link rel="stylesheet" href="css/leaflet-control-credits.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link href="https://fonts.googleapis.com/css2?family=Germania+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/leaflet.sidepanel@1.2.0/dist/style.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet.sidepanel@1.2.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@turf/turf"></script>
-    <script src="  https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Polowanie na łabędzia</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="./plugins/leaflet.curve.js"></script>
+  <script src="https://kit.fontawesome.com/09d82ae535.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/leaflet.awesome-markers.css">
+  <script src="./plugins/leaflet.awesome-markers.js"></script>
+  <script type="text/javascript" src="plugins/leaflet-control-credits.js"></script>
+  <link rel="stylesheet" href="css/leaflet-control-credits.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Germania+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.sidepanel@1.2.0/dist/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.sidepanel@1.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.4.0/github-markdown-light.min.css">
 </head>
-<body>
-    <div id="header">
-        <button class="hamburger" onclick="toggleMenu()">
-            &#9776;
-        </button>
-        <label>
-          <div class="wraper">
-            <button class="round-button" onclick="backToDefaultView()"><i class="fa fa-map"></i></button>
-          <span class="label-text">Resetuj mapę</span>
-          </div>
-        </label>
-        <label class="wraper" for="houses">
-          <div class="switch-wrap">
-            <input type="checkbox" id="houses" onchange="switchCharsLocations()"checked/>
-            <div class="switch"></div>
-          </div>
-          <span class="label-text">Lokalizacje postaci</span>
-        </label>
-        <label class="wraper" for="route">
-          <div class="switch-wrap">
-            <input type="checkbox" id="route" onchange="switchGilbertsPath()" checked/>
-            <div class="switch"></div>
-          </div>
-          <span class="label-text">Trasa Gilberta</span>
-        </label>
-        <label class="wraper" for="places">
-          <div class="switch-wrap">
-            <input type="checkbox" id="places" onchange="switchOtherPlaces()"/>
-            <div class="switch"></div>
-          </div>
-          <span class="label-text">Inne miejsca</span>
-        </label>
+
+<body class="flex flex-col h-full bg-blue-200">
+  <div id="header" class="bg-blue-200 flex items-center flex-col sm:flex-row justify-between ">
+
+    <div class="font-mono font-bold flex p-2 items-center text-xs">
+      <i class="fa-solid fa-feather-pointed pr-2 text-amber-600"></i>
+      <p>Polowanie na łabędzia</p>
     </div>
-    <div id="map">
-    <div id="panelID" class="sidepanel" aria-label="side panel" aria-hidden="false">
-        <div class="sidepanel-inner-wrapper">
-          <nav class="sidepanel-tabs-wrapper" aria-label="sidepanel tab navigation">
-            <ul class="sidepanel-tabs" role="tablist">
-              <li class="sidepanel-tab" role="presentation">
-                <a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-1">
+    <div class='font-mono text-xs font-bold'>
+        <a href="https://www.wattpad.com/story/197754386-aph-polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Wattpad</a>
+        <a href="https://archiveofourown.org/works/20355778/chapters/48268933" target="_blank">AO3</a>
+        <a href="https://www.fanfiction.net/s/13370205/1/Polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Fanfiction.net</a>
+        <a href="https://www.kaishouri.pl/read/polowanienalabedzia"
+        
+         target="_blank">KaiShouri.pl</a></div>
+    <div class="bg-blue-200 flex sm:flex-center sm:items-center flex-col sm:flex-row p-1 m-2">
+      <label class="inline-flex items-center cursor-pointer m-2 sm:m-1">
+        <input type="checkbox" class="sr-only peer" id="houses" onchange="switchCharsLocations()" checked>
+        <div
+          class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-amber-600 dark:peer-checked:bg-amber-600">
+        </div>
+        <span class="ms-3 pr-3 font-bold text-xs text-gray-900 font-mono">Lokalizacje postaci</span>
+      </label>
+
+      <label class="inline-flex items-center cursor-pointer m-2 sm:m-1">
+        <input type="checkbox" value="" class="sr-only peer" id="route" onchange="switchGilbertsPath()" checked>
+        <div
+          class="relative w-11 h-6 bg-gray-200 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-amber-600 dark:peer-checked:bg-amber-600">
+        </div>
+        <span class="ms-3 pr-3 font-bold text-xs text-gray-900 font-mono">Trasa Gilberta</span>
+      </label>
+
+      <label class="inline-flex items-center cursor-pointer m-2 sm:m-1">
+        <input type="checkbox" value="" class="sr-only peer" id="places" onchange="switchOtherPlaces()">
+        <div
+          class="relative w-11 h-6 bg-gray-200 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-amber-600 dark:peer-checked:bg-amber-600">
+        </div>
+        <span class="ms-3 pr-3 font-bold text-xs text-gray-900 font-mono">Inne miejsca</span>
+      </label>
+    </div>
+
+  </div>
+
+
+  <div id="map" class="flex flex-1">
+    <div id="panelID" class="sidepanel !font-mono" aria-label="side panel" aria-hidden="false">
+      <div class="sidepanel-inner-wrapper !bg-blue-200 ">
+        <nav class="sidepanel-tabs-wrapper !bg-blue-200 !shadow-none" aria-label="sidepanel tab navigation">
+          <ul class="sidepanel-tabs" role="tablist">
+            <li class="sidepanel-tab flex flex-col justify-between" role="presentation">
+              <a href="#"
+                class=" sidebar-tab-link !hover:border-none my-4 !text-black !-rotate-90 !font-mono !font-bold !normal-case [&.active]:!text-amber-600 [&.active]:!border-0 hover:!border-0 !border-0"
+                role="tab" data-tab-link="tab-1">
+                Berlin
+              </a>
+            </li>
+            <li class="sidepanel-tab">
+              <a href="#"
+                class=" sidebar-tab-link !hover:border-none  my-4 -rotate-90 !text-black !font-mono !font-bold !normal-case [&.active]:!text-amber-600 [&.active]:!border-0 hover:!border-0 !border-0"
+                role="tab" data-tab-link="tab-2">
+                Imperium
+              </a>
+            </li>
+            <li class="sidepanel-tab">
+              <a href="#"
+                class="sidebar-tab-link  !hover:border-none my-4 -rotate-90 !text-black !font-mono !font-bold !normal-case [&.active]:!text-amber-600 [&.active]:!border-0 hover:!border-0 !border-0"
+                role="tab" data-tab-link="tab-3">
+                Prusy
+              </a>
+            </li>
+            <li class="sidepanel-tab">
+              <a href="#"
+                class="sidebar-tab-link !hover:border-none  my-4 -rotate-90 !text-black !font-mono !font-bold !normal-case [&.active]:!text-amber-600 [&.active]:!border-0 hover:!border-0 !border-0"
+                role="tab" data-tab-link="tab-4">
+                Wenedig
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="sidepanel-content-wrapper">
+          <div class="sidepanel-content">
+            <div class="sidepanel-tab-content !bg-blue-200 markdown-body !font-mono !border-black"
+              data-tab-content="tab-1">
+              <div id="berlin">
+                <h1 class="!border-b-0">
                   Berlin
-                </a>
-              </li>
-              <li class="sidepanel-tab">
-                <a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-2">
-                  Imperium
-                </a>
-              </li>
-              <li class="sidepanel-tab">
-                <a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-3">
-                  Prusy
-                </a>
-              </li>
-              <li class="sidepanel-tab">
-                <a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-4">
-                  Wenedig
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="sidepanel-content-wrapper">
-            <div class="sidepanel-content">
-              <div class="sidepanel-tab-content" data-tab-content="tab-1">
-                <p id="berlin"></p>
+                </h1>
+                <p>
+                  Stolica i jedno z największych miast Zjednoczonej Rzeszy Niemieckiej. Założony w XIII wieku, od setek
+                  lat stanowi siedzibę władz - najpierw brandenburskich elektorów, później pruskich królów i niemieckich
+                  cesarzy, a w końcu następujących po sobie führerów.
+                </p>
+                <p>
+                  Gdy Trzecia Rzesza toczyła Wielką Wojnę Dziesięcioletnią, rozszerzając się na wschód, zachód, północ i
+                  południe, Berlin w tym czasie kwitł. Zabudowa miasta niemal nie ucierpiała w czasie wojennej
+                  zawieruchy, a monumentalne budynki wzniesione w ramach Planu Germania dodatkowo je uświetniły.
+                  Współcześnie Berlin prezentuje się jako piękne, wielkie, czyste miasto - dokładnie tak, jak powinna
+                  wyglądać stolica zwycięskiego imperium. Wedle führera, oczywiście.
+                </p>
+                <p>
+                  Zrezygnowano jedynie z budowy Wielkiej Hali - bagnisty grunt Berlina nie nadawał się na to, by
+                  postawić na nim tak monumentalną budowlę - ale to nic, bo niewiele miast na świecie jest w stanie
+                  dorównać stolicy Rzeszy. Wedle oficjalnych podręczników do geografii, rzecz jasna.
+                </p>
+                <h2 class="!border-b-0">
+                  Großer Platz
+                </h2>
+                <p>
+                  Najważniejsze i najbardziej reprezentacyjne miejsce w Berlinie, gdzie znajdują się Reichstag i pałac
+                  führera.
+                </p>
+                <blockquote class="!border-l-0 !text-black">
+                  (...) ruszył szybkim krokiem przez równy bruk, nie zwracając uwagi ani na stare kamienice z
+                  kolumienkami, rzeźbieniami i ozdobnymi attykami, nawiązujące do szlachetnej starożytności, ani na
+                  kunsztowne zdobione, gazowe lampy uliczne, które zgodnie ze starą tradycją każdego wieczoru rozpalano
+                  ręcznie i które roztaczały wokół miękkie, ciepłe światło, otulając Großer Platz delikatnym, złotym
+                  blaskiem.Kroczył między tłumem, wśród rodzin z dziećmi, młodzieży, korzystającej z wolności letnich
+                  ferii i wśród odzianych w drogie garnitury polityków, krążących między Reichstagiem po prawej, w
+                  którym Gilbert powinien być godzinę temu. a pałacem führera po lewej stronie placu. Spacerujący
+                  korzystali z zielonych skwarów i wygodnych ławek, czerpali dłońmi wody z fontanny Neptuna, głaszcząc
+                  nagie, kamienne ramiona towarzyszących mu rzek - Łaby, Odry, Renu i Wisły, każdej o ciele pięknej
+                  kobiety, podległej władzy potężnego boga mórz. (...) W oddali, za tonią zieleni placu i
+                  zlokalizowanych nań budynków, błyszczała pełna kolorowych barek tafla Sprewy.
+                </blockquote>
+                <h2 class="!border-b-0">
+                  Inspiracje</h2>
+                <p>Budynki, które w naszym świecie zostały zniszczone, a w łabędziowym Berlinie ciągle stoją: </p>
+                <ul class="list-disc">
+                  <li>
+                    <a class="!hover:text-black !text-black !visited:text-black !no-underline"
+                      href="https://www.berlinsko.com/2020/03/przedwojenny-berlin-na-zdjeciach.html">Przedwojenny
+                      Berlin na zdjęciach</a>
+                  </li>
+                  <li>
+                    <a class="!hover:text-black !text-black !visited:text-black !no-underline"
+                      href="https://buzz.gazeta.pl/buzz/56,156947,21084920,takiego-berlina-nigdy-nie-zobaczycie-na-zywo-wlasnie-tak-wygladal.html">Przedwojenny
+                      Takiego Berlina nie zobaczycie na żywo</a>
+                  </li>
+                </ul>
+                <p>Niezrealizowany w naszym świecie Plan Germania:</p>
+                <ul class="list-disc">
+                  <li>
+                    <a class="!hover:text-black !text-black !visited:text-black !no-underline"
+                      href="https://pl.wikipedia.org/wiki/Plan_Germania">Plan Germania - Wiki</a>
+                  </li>
+                  <li>
+                    <a class="!hover:text-black !text-black !visited:text-black !no-underline"
+                      href="https://www.youtube.com/watch?v=2k9VKjfffs4">Wizualizacja (kiepska jakość)</a>
+                  </li>
+                  <li>
+                    <a class="!hover:text-black !text-black !visited:text-black !no-underline"
+                      href="https://de.wikipedia.org/wiki/Welthauptstadt_Germania">Welthauptstadt Germania - Wiki</a>
+                  </li>
+                  <li>
+                    <a class="!hover:text-black !text-black !visited:text-black !no-underline"
+                      href="https://gadzetomania.pl/niezwykle-projekty-iii-rzeszy-cz-1-germania-nowa-stolica-swiata,6704098211686529a">Niezwykłe
+                      projekty III Rzeszy - Germania</a>
+                  </li>
+                </ul>
+
               </div>
             </div>
-            <div class="sidepanel-content">
-              <div class="sidepanel-tab-content" data-tab-content="tab-2">
-                <p id="empire"></p>
+          </div>
+          <div class="sidepanel-content">
+            <div class="sidepanel-tab-content !bg-blue-200 markdown-body !font-mono" data-tab-content="tab-2">
+              <div id="empire">
+                <h1 class="!border-b-0">
+                  Zjednoczona Rzesza Niemiecka
+                </h1>
+                <p>
+                  Pierwsza, Druga, Trzecia i Zjednoczona, ostatnia i najwspanialsza Rzesza z całej wielowiekowej
+                  historii Niemiec - jak mówią podręczniki - powstała podczas Wielkiej Wojny Dziesięcioletniej, gdy
+                  dokonano udanego zamachu na pierwszego führera. Drugi tego imienia, niejaki Claus, zatrzymał co prawda
+                  politykę ludobójstwa, ale Rzesza nadal podbijała i zajmowała kolejne terytoria.
+
+                </p>
+                <p>
+                  Po dziesięciu latach wojny Rzesza ogłosiła zwycięstwo, a ten dzień, Dzień Zjednoczenia, stał się odtąd
+                  najważniejszym świętem państwowym. Kolejne dziesięciolecia to stabilizacja ogromnego, podzielonego na
+                  wiele nacji kraju metodami, które Rzesza - jeszcze Trzecia - opanowała do perfekcji, a więc propagandą
+                  i izolacją.
+
+                </p>
+                <p>
+                  Obecnie, w dwa tysiące dziewiętnastym roku Zjednoczona Rzesza Niemiecka osiągnęła już swój cel -
+                  niewiele jest osób, które pamiętają Europę taką, jaką była przed wojną.
+
+                </p>
+                <h2 class="!border-b-0">
+                  Najważniejsze informacje
+                </h2>
+                <p>
+                  <strong>język urzędowy: </strong> niemiecki
+                </p>
+                <p>
+                  <strong>stolica: </strong> Berlin
+                </p>
+                <p>
+                  <strong>rząd: </strong> jednoizbowy parlament i führer
+                </p>
+                <p>
+                  <strong>populacja: </strong> 500 milionów
+                </p>
+                <h2 class="!border-b-0">
+                  Kalendarium</h2>
+                <ul class="list-disc">
+                  <li>
+                    1915-1918 - Wielka Wojna Pięcioletnia.
+                  </li>
+                  <li>
+                    1937 - Preludium Bałtyckie. Rosja napada na Litwę, Łotwę i Estonię, a następnie na mocy tajnej
+                    umowy przekazuje ten terytorium Rzeszy w zamian za kontrolę nad niemieckimi kolonami w Afryce.
+                  </li>
+                  <li>
+                    1939-1949 - po stabilizacji nowych terytoriów Rzesza wykorzystuje je do ataku na Polskę.
+                    Rozpoczyna się Wielka Wojna Dziesięcioletnia, w czasie której Niemcy zdobywają terytorium od
+                    Pirenejów po Kursk. Dużym sukcesem jest podbicie Wenecji, otwierające drogę do portów na Adriatyku i
+                    Morzu Śródziemnym - dziś okolice Wenedig są małym terytorium zależnym Rzeszy.
+                  </li>
+                  <li>
+                    1940 - By zjednać sobie ludzi, Rzesza ogłasza, że zdobyte Wilno należy do Litwy, ma to jednak
+                    tylko tymczasowy efekt.
+                  </li>
+                  <li>
+                    1943 - Wzrasta niezadowolenie oddziałów bałtyckich, używanych jako mięso armatnie - w odpowiedzi
+                    oszalały führer nakazuje zbombardować Wilno i Kowno. Drugie z miast zostaje częściowo zniszczone,
+                    pierwsze - całkowicie.
+                  </li>
+                  <li>
+                    1944 - Warszawa zostaje zrównana z ziemią podczas powstania.
+                  </li>
+                  <li>
+                    1944 - Udany zamach stanu, władzę przejmuje drugi führer.
+                  </li>
+                  <li>
+                    1944-1947 - Personifikacje na rozkaz führera Clausa zostają uwięzieni w celach. Gilbert osobiście
+                    interweniuje, przekonując führera, że złe warunki panujące w więzieniach tylko wzmocnią opór
+                    podbitych personifikacji. Dzięki jemu wstawiennictwu powstaje biuro relokacji i system, w którym
+                    personifikacje są kontrolowane, ale mogą żyć samodzielnie i pracować, a on sam staje się osobą
+                    przeprowadzającą cotygodniowe wizytacje przez kolejne kilkadziesiąt lat.
+                  </li>
+                  <li>
+                    1948 - Grupa młodych Litwinów z Uciany próbuje zorganizować atak na okupantów; policja aresztuje
+                    ich przed wykonaniem jakiegkolwiek ruchu, a Gilbert używa osobistych wpływów, by Taurys nie został
+                    zaaresztowany. Wojna kończy się kilka tygodni później.
+                  </li>
+                  <li>
+                    1953 - z terenów Prus Wschodnich, Zachodnich i części przejętych krajów bałtyckich powstaje
+                    Autonomiczny Kraj Prus.
+                  </li>
+                  <li>
+                    ? - po śmierci Clausa władzę w państwie przejmuje Ferenc Weigel, trzeci führer.
+                  </li>
+                  <li>
+                    2009 - umiera Feliks Łukasiewicz, niejaki Polska. A tak przynajmniej wszyscy sądzą.
+                  </li>
+                  <li>
+                    2014 - Zamach w Kursku.
+                  </li>
+                  <li>
+                    2019 - Taurys Laurinaitis, nauczyciel muzyki w berlińskiej szkole, znajduje w swojej e-postowej
+                    skrzynce tajemniczą wiadomość...
+                  </li>
+                </ul>
+
               </div>
             </div>
-            <div class="sidepanel-content">
-              <div class="sidepanel-tab-content" data-tab-content="tab-3">
-                <p id="prussia"></p>
+          </div>
+          <div class="sidepanel-content">
+            <div class="sidepanel-tab-content !bg-blue-200 markdown-body !font-mono" data-tab-content="tab-3">
+              <div id="prussia">
+                <h1 class="!border-b-0">
+                  Autonomiczny Kraj Prus
+                </h1>
+                <p>
+                  Istniejący od 1953 roku wydzielony obszar Zjednoczonej Rzeszy, posiadający własne prawodawstwo,
+                  szkolnictwo i parlament, połączony z imperium szeregiem wzajemnych umów. Pruski parlament
+                  najważniejsze decyzje konsultuje z niemieckim parlamentem, a w krytycznych przypadkach - z führerem we
+                  własnej osobie.
+
+                </p>
+                <p>
+                  Każdy obywatel Prus jest jednocześnie obywatelem Rzeszy, a mieszkańcy obu krajów mogą przekraczać
+                  wewnętrzną granicę całkowicie swobodnie.
+                </p>
+
+                <h2 class="!border-b-0">
+                  Najważniejsze informacje
+                </h2>
+                <p>
+                  <strong>język urzędowy: </strong> niemiecki
+                </p>
+                <p>
+                  <strong>stolica: </strong> Königsberg
+                </p>
+                <p>
+                  <strong>rząd: </strong> parlament
+                </p>
               </div>
+
             </div>
-            <div class="sidepanel-content">
-              <div class="sidepanel-tab-content" data-tab-content="tab-4">
-                <p id="wenedig"></p>
+          </div>
+          <div class="sidepanel-content">
+            <div class="sidepanel-tab-content !bg-blue-200 markdown-body !font-mono" data-tab-content="tab-4">
+              <div id="wenedig">
+
+                <h1 class="!border-b-0">
+                  Terytorium Zależne Wenecji
+                </h1>
+                <p>
+                  Okolice Wenecji - oficjalnie noszącej nazwę Wenedig - zostały oderwane od Włoch podczas Wielkiej Wojny
+                  Dziesięcioletniej i w podręcznikach mówi się o nim jako o jednym z największych sukcesów Rzeszy. Z
+                  jednej strony, Rzesza zacisnęła kły na tutejszym porcie morskim, otwierając sobie drogę do handlu
+                  przez wody Adriatyku, z drugiej - piękne, niemalże niezniszczone miasto stało się kolejną ozdobą
+                  rosnącego imperium.
+                </p>
+                <p>
+                  Jako jedyne z podbitych terytoriów nie zostało całkowicie zintegrowane z resztą kraju, a włoskie
+                  wpływy wciąż są tu silne, głównie dzięki portowi i małemu ruchowi granicznemu. Jest popularnym
+                  miejscem wypoczynku dla niemieckich elit.
+
+                </p>
               </div>
             </div>
           </div>
         </div>
-        <div class="sidepanel-toggle-container">
-          <button class="sidepanel-toggle-button" type="button" aria-label="toggle side panel"></button>
-        </div>
-    <script type="module" src="main.js"></script>
+      </div>
+      <div class="sidepanel-toggle-container">
+        <button class="sidepanel-toggle-button !bg-blue-200 !border-0" type="button"
+          aria-label="toggle side panel"></button>
+      </div>
+      <script type="module" src="main.js"></script>
 </body>
+
 </html>

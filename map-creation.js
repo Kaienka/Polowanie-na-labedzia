@@ -12,21 +12,23 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 function addCredits(map) {
     L.controlCredits({
-        imageurl: './icon.png',
+        imageurl: './open-book.png',
         imagealt: 'icon for links',
         tooltip: 'Made by KaiShouri',
         width: '30px',
         height: '30px',
-        position: 'bottomright',
-        expandcontent: `<strong>Polowanie na łabędzia</strong><br>
-        <a href="https://www.wattpad.com/story/197754386-aph-polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Wattpad</a>
-        <a href="https://archiveofourown.org/works/20355778/chapters/48268933" target="_blank">AO3</a>
-        <a href="https://www.fanfiction.net/s/13370205/1/Polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Fanfiction.net</a>`
+        position: 'topleft',
+        expandcontent: `<div class='bg-blue-200 p-2 rounded-md font-mono'><strong>Czytaj tutaj:</strong><br>
+        <a href="https://www.wattpad.com/story/197754386-aph-polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Wattpad</a><br>
+        <a href="https://archiveofourown.org/works/20355778/chapters/48268933" target="_blank">AO3</a><br>
+        <a href="https://www.fanfiction.net/s/13370205/1/Polowanie-na-%C5%82ab%C4%99dzia" target="_blank">Fanfiction.net</a><br>
+        <a href="https://www.kaishouri.pl/read/polowanienalabedzia" target="_blank">KaiShouri.pl</a></div>`
+
     }).addTo(map)
 }
 
 function addPanel(map) {
-    const panelRight = L.control
+    L.control
     .sidepanel('panelID', {
       panelPosition: 'right',
       hasTabs: true,

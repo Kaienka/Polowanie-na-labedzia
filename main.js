@@ -9,15 +9,12 @@ let curvePath = []
 let gilbPathVisible = true
 let geoJson = {}
 
-import { createdMap, addCredits, addPanel, defaultCoordinates, defaultZoom } from "./map-creation.js"
+import { createdMap, addPanel, defaultCoordinates, defaultZoom } from "./map-creation.js"
 import { pathOptions } from "./icons.js"
 import { createPlaceMarker, createMarker, createCountryInfo } from "./markers.js"
 
 
 const map = createdMap
-addCredits(map)
-
-
 
 map.on('zoomend', () => {
     geoJson.eachLayer(layer => {
@@ -38,25 +35,22 @@ const showInfo = (feature) => {
 }
 
 window.switchCharsLocations = () => {
-    markers.forEach((marker) => {
-        markersVisible ? map.removeLayer(marker) : marker.addTo(map)
-    })
-    document.getElementById('houses').style.color = !markersVisible? 'gold' : 'black'
     markersVisible = !markersVisible
+    markers.forEach((marker) => {
+        markersVisible ? marker.addTo(map) : map.removeLayer(marker)
+    })
 }
 
 window.switchGilbertsPath = () => {
-    gilbPathVisible ? map.removeLayer(gilbPath) : gilbPath.addTo(map)
-    document.getElementById('route').style.color = !gilbPathVisible? 'gold' : 'black'
     gilbPathVisible = !gilbPathVisible
+    gilbPathVisible ? gilbPath.addTo(map) : map.removeLayer(gilbPath)
 }
 
 window.switchOtherPlaces = () => {
-    placeMarkers.forEach((marker) => {
-        otherPlacesVisible ? map.removeLayer(marker) : marker.addTo(map)
-    })
-    document.getElementById('places').style.color = !otherPlacesVisible ? 'gold' : 'black'
     otherPlacesVisible = !otherPlacesVisible
+    placeMarkers.forEach((marker) => {
+        otherPlacesVisible ?  marker.addTo(map) : map.removeLayer(marker)
+    })
 }
 
 window.backToDefaultView = function () {
@@ -123,30 +117,4 @@ fetch("data/places.json")
     })
     .catch((error) => {
         console.error("There was a problem with the fetch operation:", error)
-    })
-
-const conventer = new showdown.Converter()
-
-fetch('data/berlin.md')
-    .then(response => response.text())
-    .then((result) =>  {
-        document.getElementById('berlin').innerHTML = conventer.makeHtml(result)
-    })
-
-fetch('data/prussia.md')
-    .then(response => response.text())
-    .then((result) =>  {
-        document.getElementById('prussia').innerHTML = conventer.makeHtml(result)
-    })
-
-fetch('data/empire.md')
-    .then(response => response.text())
-    .then((result) =>  {
-        document.getElementById('empire').innerHTML = conventer.makeHtml(result)
-    })
-
-fetch('data/wenedig.md')
-    .then(response => response.text())
-    .then((result) =>  {
-        document.getElementById('wenedig').innerHTML = conventer.makeHtml(result)
     })
