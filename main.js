@@ -6,13 +6,12 @@ let gilbPath = {}
 let curvePath = []
 let geoJson = {}
 let gilbPathVisible = true
-let markersVisible = true
+let charactersVisible = true
 let otherPlacesVisible = false
 
 import { createdMap, addPanel } from "./map-creation.js"
 import { pathOptions } from "./icons.js"
 import { createPlaceMarker, createMarker, createCountryInfo } from "./markers.js"
-
 
 const map = createdMap
 
@@ -35,20 +34,20 @@ const showInfo = (feature) => {
 }
 
 
-  const housesCheckbox = document.getElementById('houses')
+  const charactersCheckbox = document.getElementById('characters')
   const routeCheckbox = document.getElementById('route')
   const placesCheckbox = document.getElementById('places')
 
   window.addEventListener('DOMContentLoaded', () => {
-    housesCheckbox.checked = markersVisible
+    charactersCheckbox.checked = charactersVisible
     routeCheckbox.checked = gilbPathVisible
     placesCheckbox.checked = otherPlacesVisible
   })
 
-  housesCheckbox.addEventListener('change', () => {
-    markersVisible = housesCheckbox.checked
+  charactersCheckbox.addEventListener('change', () => {
+    charactersVisible = charactersCheckbox.checked
     markers.forEach(marker => {
-      markersVisible ? marker.addTo(map) : map.removeLayer(marker)
+      charactersVisible ? marker.addTo(map) : map.removeLayer(marker)
     })
   })
 

@@ -3,8 +3,8 @@ import { placesIcon, charIcon } from "./icons.js"
 let labels = []
 
 const createMarkerDesc = (character) => {
-    return `<div class='font-mono'>
-            <h3 class='font-normal'><b>${character.pl}</b></h3>
+    return `<div class='font-mono text-normal'>
+            <h3 class='text-normal'><b>${character.pl}</b></h3>
             <span><strong>Mieszka w: </strong>${character.location}</span><br>
             <span><strong>Zawód: </strong>${character.occupation}</span><br>
             <span><strong>Wizytacja: </strong>${character.day} jako ${character.order} w kolejce</span></div>`
