@@ -1,15 +1,15 @@
 let characters = {}
 let markers = []
-let markersVisible = true
 let places = {}
-let otherPlacesVisible = false
 let placeMarkers = []
 let gilbPath = {}
 let curvePath = []
-let gilbPathVisible = true
 let geoJson = {}
+let gilbPathVisible = true
+let markersVisible = true
+let otherPlacesVisible = false
 
-import { createdMap, addPanel, defaultCoordinates, defaultZoom } from "./map-creation.js"
+import { createdMap, addPanel } from "./map-creation.js"
 import { pathOptions } from "./icons.js"
 import { createPlaceMarker, createMarker, createCountryInfo } from "./markers.js"
 
@@ -34,33 +34,35 @@ const showInfo = (feature) => {
     }
 }
 
-window.switchCharsLocations = () => {
-    markersVisible = !markersVisible
-    markers.forEach((marker) => {
-        markersVisible ? marker.addTo(map) : map.removeLayer(marker)
-    })
-}
 
-window.switchGilbertsPath = () => {
-    gilbPathVisible = !gilbPathVisible
+  const housesCheckbox = document.getElementById('houses')
+  const routeCheckbox = document.getElementById('route')
+  const placesCheckbox = document.getElementById('places')
+
+  window.addEventListener('DOMContentLoaded', () => {
+    housesCheckbox.checked = markersVisible
+    routeCheckbox.checked = gilbPathVisible
+    placesCheckbox.checked = otherPlacesVisible
+  })
+
+  housesCheckbox.addEventListener('change', () => {
+    markersVisible = housesCheckbox.checked
+    markers.forEach(marker => {
+      markersVisible ? marker.addTo(map) : map.removeLayer(marker)
+    })
+  })
+
+  routeCheckbox.addEventListener('change', () => {
+    gilbPathVisible = routeCheckbox.checked
     gilbPathVisible ? gilbPath.addTo(map) : map.removeLayer(gilbPath)
-}
+  })
 
-window.switchOtherPlaces = () => {
-    otherPlacesVisible = !otherPlacesVisible
-    placeMarkers.forEach((marker) => {
-        otherPlacesVisible ?  marker.addTo(map) : map.removeLayer(marker)
+  placesCheckbox.addEventListener('change', () => {
+    otherPlacesVisible = placesCheckbox.checked
+    placeMarkers.forEach(marker => {
+      otherPlacesVisible ? marker.addTo(map) : map.removeLayer(marker)
     })
-}
-
-window.backToDefaultView = function () {
-    map.setView(defaultCoordinates, defaultZoom)
-}
-
-window.toggleMenu = function() {
-    const header = document.getElementById('header')
-    header.classList.toggle('menu-visible')
-}
+  })
 
 
 // Data loading
