@@ -3,11 +3,10 @@ let markers = []
 let places = {}
 let placeMarkers = []
 let gilbPath = {}
-let curvePath = []
-let geoJson = {}
 let gilbPathVisible = true
 let charactersVisible = true
 let otherPlacesVisible = false
+let geoJsonLayers = []
 
 import { createdMap, addPanel } from "./map-creation.js"
 import { pathOptions } from "./icons.js"
@@ -16,15 +15,22 @@ import { createPlaceMarker, createMarker, createCountryInfo } from "./markers.js
 const map = createdMap
 
 map.on('zoomend', () => {
-    geoJson.eachLayer(layer => {
+    geoJsonLayers.forEach(layer => {
         if (layer.feature) {
             showInfo(layer.feature)
         }
-    });
-});
+    })
+})
+
 
 const style = (feature) => {
-    return { color: feature.properties.fill }
+    return { 
+        color: feature.properties.fill,
+            weight: 2,
+            opacity: 0.8,
+            fillColor: feature.properties.fill,
+            fillOpacity: 0.5 
+     }
 }
 
 const showInfo = (feature) => {
@@ -64,44 +70,100 @@ const showInfo = (feature) => {
   })
 
 
-// Data loading
+
+function getBezierCurve(points) {
+    if (points.length < 2) return []
+
+    let path = ["M", points[0]]
+
+    for (let i = 0; i < points.length - 1; i++) {
+        const p0 = i > 0 ? points[i - 1] : points[i]
+        const p1 = points[i]
+        const p2 = points[i + 1]
+        const p3 = i < points.length - 2 ? points[i + 2] : p2
+
+        const cp1 = [
+            p1[0] + (p2[0] - p0[0]) / 6,
+            p1[1] + (p2[1] - p0[1]) / 6
+        ]
+        const cp2 = [
+            p2[0] - (p3[0] - p1[0]) / 6,
+            p2[1] - (p3[1] - p1[1]) / 6
+        ]
+
+        path.push("C", cp1, cp2, p2)
+    }
+
+    return path
+}
+
 fetch("data/characters.json")
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error("Network response was not ok")
-        }
+    .then(response => {
+        if (!response.ok) throw new Error("Network response was not ok")
         return response.json()
     })
-    .then((data) => {
+    .then(data => {
         characters = data.characters
         characters.sort((a, b) => a.order - b.order)
-        curvePath.push("M", characters[0].coordinates)
+
+        const coords = []
+
         characters.forEach((character, index) => {
-            createMarker(character, markers, map)
-            if (index > 0) {
-                curvePath.push("L", character.coordinates)
-            }
+            createMarker(character, markers, map, index)
+            coords.push(character.coordinates)
         })
-        gilbPath = L.curve(curvePath, pathOptions).addTo(map)
+
+        const smoothPath = getBezierCurve(coords)
+        gilbPath = L.curve(smoothPath, pathOptions).addTo(map)
     })
-    .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error)
-    })
+    .catch(error => console.error("There was a problem with the fetch operation:", error))
+
+
+
+function getSmoothPolygonPoints(points, segments = 5) {
+    if (points.length < 2) return points
+
+    const result = []
+    for (let i = 0; i < points.length; i++) {
+        const p0 = points[i > 0 ? i - 1 : points.length - 1]
+        const p1 = points[i]
+        const p2 = points[(i + 1) % points.length]
+        const p3 = points[(i + 2) % points.length]
+
+        for (let t = 0; t <= 1; t += 1 / segments) {
+            const t2 = t * t
+            const t3 = t2 * t
+            const x = 0.5 * ((2 * p1[0]) +
+                (-p0[0] + p2[0]) * t +
+                (2*p0[0] - 5*p1[0] + 4*p2[0] - p3[0]) * t2 +
+                (-p0[0] + 3*p1[0] - 3*p2[0] + p3[0]) * t3)
+            const y = 0.5 * ((2 * p1[1]) +
+                (-p0[1] + p2[1]) * t +
+                (2*p0[1] - 5*p1[1] + 4*p2[1] - p3[1]) * t2 +
+                (-p0[1] + 3*p1[1] - 3*p2[1] + p3[1]) * t3)
+            result.push([y, x])
+        }
+    }
+    return result
+}
 
 fetch("data/map.geojson")
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error("Network response was not ok")
-        }
-        return response.json()
-    })
-    .then((data) => {
-        geoJson = L.geoJSON(data, {
-            style: style,
-            onEachFeature: showInfo,
-        }).addTo(map)
+    .then(res => res.json())
+    .then(data => {
+        data.features.forEach(f => {
+            if (f.geometry.type === "Polygon") {
+                const coords = f.geometry.coordinates[0]
+                const smoothCoords = getSmoothPolygonPoints(coords, 10)
+
+                const layer = L.polygon(smoothCoords, style(f)).addTo(map)
+                layer.feature = f 
+                geoJsonLayers.push(layer)
+                showInfo(f, layer)
+            }
+        })
         addPanel(map)
     })
+
 
 fetch("data/places.json")
     .then((response) => {
