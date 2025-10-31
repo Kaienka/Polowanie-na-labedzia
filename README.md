@@ -14,8 +14,6 @@ Hello! This here is a small hobby project related to my fanfiction ["Polowanie n
 
 [Leaflet curve](https://github.com/elfalem/Leaflet.curve)
 
-[L.credits](https://github.com/GreenInfo-Network/Leaflet-Control-Credits)
-
 [Turf](https://turfjs.org/)
 
 [Leaflet Sidepanel](https://github.com/maxwell-ilai/Leaflet.SidePanel)
