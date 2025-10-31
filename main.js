@@ -12,6 +12,33 @@ import { createdMap, addPanel } from "./map-creation.js"
 import { pathOptions } from "./icons.js"
 import { createPlaceMarker, createMarker, createCountryInfo } from "./markers.js"
 
+
+
+  const header = document.getElementById('header')
+  const toggle = document.getElementById('header-toggle')
+
+  toggle.addEventListener('click', () => {
+    const icon = toggle.querySelector('i')
+    header.classList.toggle('hidden')
+
+    if (header.classList.contains('hidden')) {
+      icon.classList.remove('fa-xmark')
+      icon.classList.add('fa-bars')
+    } else {
+      icon.classList.remove('fa-bars')
+      icon.classList.add('fa-xmark')
+    }
+  })
+
+  window.addEventListener('DOMContentLoaded', () => {
+  if (window.innerWidth < 768) { 
+    header.classList.add('hidden')
+    const icon = toggle.querySelector('i')
+    icon.classList.remove('fa-xmark')
+    icon.classList.add('fa-bars')
+  }
+})
+
 const map = createdMap
 
 map.on('zoomend', () => {
