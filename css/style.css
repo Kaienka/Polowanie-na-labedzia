@@ -10,3 +10,16 @@ body {
   font-family: monospace;
 }
 
+
+
+
+#panelID {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.sidepanel-visible {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
