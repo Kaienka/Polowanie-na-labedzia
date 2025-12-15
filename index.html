@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="Polowanie na łabędzia - mapa" content="Mapa Imperium stworzona na potrzeby fanfika do APH Polowanie na łabędzia autorstwa Kai Shouri.">
+  <meta name="Polowanie na łabędzia - mapa"
+    content="Mapa Imperium stworzona na potrzeby fanfika do APH Polowanie na łabędzia autorstwa Kai Shouri.">
 
   <title>Polowanie na łabędzia</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -19,31 +20,43 @@
   <script src="https://cdn.jsdelivr.net/npm/leaflet.sidepanel@1.2.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="icon" type="image/x-icon" href="./favicon.ico"/>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&display=swap"
+    rel="stylesheet">
 </head>
 
 <body class="flex flex-col h-full antialiased">
 
-<button id="header-toggle"
-  class="fixed top-3 right-3 z-[9999] bg-amber-500 text-white px-3 py-2 rounded-md shadow-lg sm:hidden">
-  <i class="fa-solid fa-xmark"></i>
-</button>
+  <style>
+    :root {
+      --font-mono: 'Cascadia Mono', monospace;
+    }
+  </style>
+
+  <button id="header-toggle"
+    class="fixed top-3 right-3 z-[9999] bg-amber-500 text-white px-3 py-2 rounded-md shadow-lg sm:hidden">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
 
   <div id="header" class="bg-gradient-to-br from-blue-300 to-sky-200 flex items-center flex-col sm:flex-row justify-between
   !border-b-opacity-10 !border-b-[#ffffff69] !border-b-3  border-sky-800 
   ">
-    <div class="font-mono font-bold flex p-2 items-center text-normal flex-1
+    <div class="font-mono  flex p-2 items-center text-normal flex-1
     ">
-      <i class="fa-solid fa-feather-pointed pr-2 text-amber-300"></i>
-      <p>Polowanie na łabędzia</p>
+      <i class="fa-solid fa-feather-pointed pr-2  text-amber-300"></i>
+      <p class="">Polowanie na łabędzia</p>
     </div>
-    <div class='font-mono text-normal flex flex-1 font-bold items-center justify-center'>
-      <a class="mx-2 hover:text-amber-500" href="https://www.wattpad.com/story/197754386-aph-polowanie-na-%C5%82ab%C4%99dzia"
-        target="_blank">wattpad</a>
-      <a class="mx-2 hover:text-amber-500" href="https://archiveofourown.org/works/20355778/chapters/48268933" target="_blank">ao3</a>
-      <a class="mx-2 hover:text-amber-500" href="https://www.fanfiction.net/s/13370205/1/Polowanie-na-%C5%82ab%C4%99dzia"
-        target="_blank">ff.net</a>
-      <a class="mx-2 hover:text-amber-500" href="https://www.kaishouri.pl/read/polowanienalabedzia" target="_blank">kaishouri.pl</a>
+    <div class='font-mono text-normal flex flex-1 items-center justify-center'>
+      <a class="mx-2 hover:text-amber-500"
+        href="https://www.wattpad.com/story/197754386-aph-polowanie-na-%C5%82ab%C4%99dzia" target="_blank">wattpad</a>
+      <a class="mx-2 hover:text-amber-500" href="https://archiveofourown.org/works/20355778/chapters/48268933"
+        target="_blank">ao3</a>
+      <a class="mx-2 hover:text-amber-500"
+        href="https://www.fanfiction.net/s/13370205/1/Polowanie-na-%C5%82ab%C4%99dzia" target="_blank">ff.net</a>
+      <a class="mx-2 hover:text-amber-500" href="https://www.kaishouri.pl/read/polowanienalabedzia"
+        target="_blank">kaishouri.pl</a>
     </div>
     <div class="flex sm:flex-center sm:items-center justify-end flex-col sm:flex-row p-1 m-2 flex-1">
       <label class="inline-flex items-center cursor-pointer m-2 sm:m-1">
@@ -51,7 +64,7 @@
         <div
           class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-amber-500 dark:peer-checked:bg-amber-500">
         </div>
-        <span class="ms-3 pr-3 font-bold text-normal text-gray-900 font-mono">Mieszkania postaci</span>
+        <span class="ms-3 pr-3  text-normal text-gray-900 font-mono">Mieszkania postaci</span>
       </label>
 
       <label class="inline-flex items-center cursor-pointer m-2 sm:m-1">
@@ -59,7 +72,7 @@
         <div
           class="relative w-11 h-6 bg-gray-200 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-amber-500 dark:peer-checked:bg-amber-300">
         </div>
-        <span class="ms-3 pr-3 font-bold text-normal text-gray-900 font-mono">Trasa Gilberta</span>
+        <span class="ms-3 pr-3  text-normal text-gray-900 font-mono">Trasa Gilberta</span>
       </label>
 
       <label class="inline-flex items-center cursor-pointer m-2 sm:m-1">
@@ -67,7 +80,7 @@
         <div
           class="relative w-11 h-6 bg-gray-200 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-amber-500 dark:peer-checked:bg-amber-500">
         </div>
-        <span class="ms-3 pr-3 font-bold text-normal text-gray-900 font-mono">Inne miejsca</span>
+        <span class="ms-3 pr-3  text-normal text-gray-900 font-mono">Inne miejsca</span>
       </label>
     </div>
   </div>
@@ -82,28 +95,28 @@
           <ul class="sidepanel-tabs" role="tablist">
             <li class="sidepanel-tab flex flex-col justify-between text-normal" role="presentation">
               <a href="#"
-                class=" sidebar-tab-link !hover:border-none my-4 !text-black !-rotate-90 !font-mono !font-bold !normal-case [&.active]:!text-amber-500 [&.active]:!border-0 hover:!border-0 !border-0"
+                class=" sidebar-tab-link !hover:border-none my-4 !text-black !-rotate-90 !font-mono !font-bold !normal-case [&.active]:!text-amber-600 [&.active]:!border-0 hover:!border-0 !border-0"
                 role="tab" data-tab-link="tab-1">
                 Berlin
               </a>
             </li>
             <li class="sidepanel-tab">
               <a href="#"
-                class=" sidebar-tab-link !hover:border-none  my-4 -rotate-90 !text-black !font-mono !font-bold !normal-case [&.active]:!text-amber-500 [&.active]:!border-0 hover:!border-0 !border-0"
+                class=" sidebar-tab-link !hover:border-none  my-4 -rotate-90 !text-black !font-mono !font-bold !normal-case [&.active]:!text-amber-600 [&.active]:!border-0 hover:!border-0 !border-0"
                 role="tab" data-tab-link="tab-2">
                 Imperium
               </a>
             </li>
             <li class="sidepanel-tab">
               <a href="#"
-                class="sidebar-tab-link  !hover:border-none my-4 -rotate-90 !text-black !font-mono !font-bold !normal-case [&.active]:!text-amber-500 [&.active]:!border-0 hover:!border-0 !border-0"
+                class="sidebar-tab-link  !hover:border-none my-4 -rotate-90 !text-black !font-mono !font-bold !normal-case [&.active]:!text-amber-600 [&.active]:!border-0 hover:!border-0 !border-0"
                 role="tab" data-tab-link="tab-3">
                 Prusy
               </a>
             </li>
             <li class="sidepanel-tab">
               <a href="#"
-                class="sidebar-tab-link !hover:border-none  my-4 -rotate-90 !text-black !font-mono !font-bold !normal-case [&.active]:!text-amber-500 [&.active]:!border-0 hover:!border-0 !border-0"
+                class="sidebar-tab-link !hover:border-none  my-4 -rotate-90 !text-black !font-mono !font-bold !normal-case [&.active]:!text-amber-600 [&.active]:!border-0 hover:!border-0 !border-0"
                 role="tab" data-tab-link="tab-4">
                 Wenedig
               </a>
@@ -118,7 +131,7 @@
                 <h1 class="!border-b-0 text-5xl mb-4">
                   Berlin
                 </h1>
-                <p class="text-xl m-2">
+                <p class="text-xl m-2 !font-mono">
                   Stolica i jedno z największych miast Zjednoczonej Rzeszy Niemieckiej. Założony w XIII wieku, od setek
                   lat stanowi siedzibę władz - najpierw brandenburskich elektorów, później pruskich królów i niemieckich
                   cesarzy, a w końcu następujących po sobie führerów.
@@ -157,7 +170,8 @@
                 </blockquote>
                 <h2 class="!border-b-0 !border-b-0 text-4xl my-4">
                   Inspiracje</h2>
-                <p class="text-xl m-2">Budynki, które w naszym świecie zostały zniszczone, a w łabędziowym Berlinie ciągle stoją: </p>
+                <p class="text-xl m-2">Budynki, które w naszym świecie zostały zniszczone, a w łabędziowym Berlinie
+                  ciągle stoją: </p>
                 <ul class="list-disc pl-8">
                   <li>
                     <a class="!hover:text-black !text-black !visited:text-black !no-underline text-lg"
@@ -305,14 +319,14 @@
                 <h1 class=" !border-b-0 text-5xl mb-4">
                   Autonomiczny Kraj Prus
                 </h1>
-                <p  class="text-xl m-2">
+                <p class="text-xl m-2">
                   Istniejący od 1953 roku wydzielony obszar Zjednoczonej Rzeszy, posiadający własne prawodawstwo,
                   szkolnictwo i parlament, połączony z imperium szeregiem wzajemnych umów. Pruski parlament
                   najważniejsze decyzje konsultuje z niemieckim parlamentem, a w krytycznych przypadkach - z führerem we
                   własnej osobie.
 
                 </p>
-                <p  class="text-xl m-2">
+                <p class="text-xl m-2">
                   Każdy obywatel Prus jest jednocześnie obywatelem Rzeszy, a mieszkańcy obu krajów mogą przekraczać
                   wewnętrzną granicę całkowicie swobodnie.
                 </p>
@@ -320,13 +334,13 @@
                 <h2 class="!border-b-0 text-4xl my-4">
                   Najważniejsze informacje
                 </h2>
-                <p  class="text-xl m-2">
+                <p class="text-xl m-2">
                   <strong>język urzędowy: </strong> niemiecki
                 </p>
-                <p  class="text-xl m-2">
+                <p class="text-xl m-2">
                   <strong>stolica: </strong> Königsberg
                 </p>
-                <p  class="text-xl m-2">
+                <p class="text-xl m-2">
                   <strong>rząd: </strong> parlament
                 </p>
               </div>
@@ -359,8 +373,8 @@
         </div>
       </div>
       <div class="sidepanel-toggle-container">
-        <button class="sidepanel-toggle-button !bg-sky-200 !border-opacity-10 !border-[#ffffff69] !border-3 !border-r-0" type="button"
-          aria-label="toggle side panel"></button>
+        <button class="sidepanel-toggle-button !bg-sky-200 !border-opacity-10 !border-[#ffffff69] !border-3 !border-r-0"
+          type="button" aria-label="toggle side panel"></button>
       </div>
       <script type="module" src="main.js"></script>
 </body>

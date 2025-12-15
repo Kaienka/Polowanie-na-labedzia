@@ -10,10 +10,7 @@ let geoJsonLayers = [];
 
 import { createdMap, addPanel } from "./map-creation.js";
 import { pathOptions } from "./icons.js";
-import {
-  createPlaceMarker,
-  createMarker,
-} from "./markers.js";
+import { createPlaceMarker, createMarker } from "./markers.js";
 
 const header = document.getElementById("header");
 const toggle = document.getElementById("header-toggle");
@@ -214,3 +211,32 @@ fetch("data/places.json")
   .catch((error) => {
     console.error("There was a problem with the fetch operation:", error);
   });
+
+const listItems = document.querySelectorAll("li.sidepanel-tab");
+const classesToToggle = [
+  "underline",
+  "decoration-2",
+  "decoration-amber-600",
+  "text-amber-600"
+];
+
+listItems.forEach((li) => {
+  const a = li.querySelector("a.sidebar-tab-link");
+  const syncBg = () => {
+    if (a.classList.contains("active")) {
+      li.classList.add(...classesToToggle);
+    } else {
+      li.classList.remove(...classesToToggle);
+    }
+  };
+  syncBg();
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === "class") {
+        syncBg();
+      }
+    });
+  });
+
+  observer.observe(a, { attributes: true });
+});
