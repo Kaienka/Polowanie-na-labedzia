@@ -87,6 +87,14 @@
             "coordinates": [54.89821, 23.90448],
             "city": "Kowno",
             "desc": "Odbudowane po wojnie Nowe Kowno, w którym Taurys napotkał pewnego Schwäne..."
+        },
+        {
+            "id" : 11,
+            "type": "important",
+            "name": "Dom w Alpach",
+            "coordinates": [47.388727, 12.134015768675638],
+            "city": "",
+            "desc": "Położony na alpejskim odludziu dom należący do Beilschmidtów. W teorii, bo gdyby zajrzeć w księgi wieczyste, wcale nie byłoby to takie oczywiste..."
         }
     ]
 }
